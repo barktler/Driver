@@ -15,6 +15,14 @@ export type Method =
     | "LINK"
     | "UNLINK";
 
+export type ResponseType =
+    | "arraybuffer"
+    | "blob"
+    | "document"
+    | "json"
+    | "text"
+    | "stream";
+
 export interface IRequestConfig<Body extends any = any> {
 
     readonly url: string;
