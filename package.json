@@ -1,0 +1,40 @@
+{
+  "name": "@barktler/driver",
+  "version": "1.0.0",
+  "description": ":seedling: Driver declaration",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barktler/Driver.git"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barktler/Driver/issues"
+  },
+  "homepage": "https://github.com/barktler/Driver#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "@sudoo/io": "^1.8.0",
+    "@sudoo/triforce": "^2.7.10"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "reporter": [
+      "json",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "sourceMap": true
+  }
+}
