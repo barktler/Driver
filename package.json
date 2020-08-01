@@ -15,9 +15,7 @@
     "url": "https://github.com/barktler/Driver/issues"
   },
   "homepage": "https://github.com/barktler/Driver#readme",
-  "dependencies": {
-    "axios": "^0.19.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@sudoo/io": "^1.8.0",
     "@sudoo/triforce": "^2.7.10"
