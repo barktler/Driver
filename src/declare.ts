@@ -4,6 +4,8 @@
  * @description Declare
  */
 
+import { Pattern } from "@sudoo/pattern";
+
 export type Method =
     | "GET"
     | "DELETE"
@@ -35,6 +37,7 @@ export interface IRequestConfig<Body extends any = any> {
     readonly timeout?: number;
 
     readonly responseType?: ResponseType;
+    readonly pattern?: Pattern;
 }
 
 export interface IResponseConfig<Data extends any = any> {
@@ -44,6 +47,7 @@ export interface IResponseConfig<Data extends any = any> {
     readonly statusText: string;
 
     readonly headers: Record<string, string>;
+    readonly pattern?: Pattern;
 }
 
 export type RequestDriver = <Body extends any = any, Data extends any = any>(request: IRequestConfig<Body>) => Promise<IResponseConfig<Data>>;
