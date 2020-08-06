@@ -25,7 +25,13 @@ export type ResponseType =
     | "text"
     | "stream";
 
-export interface IRequestConfig<Body extends any = any> {
+export interface IInjectConfig {
+
+    readonly requestBodyPattern?: Pattern;
+    readonly responseBodyPattern?: Pattern;
+}
+
+export interface IRequestConfig<Body extends any = any> extends IInjectConfig {
 
     readonly url: string;
     readonly method: Method;
@@ -37,17 +43,15 @@ export interface IRequestConfig<Body extends any = any> {
     readonly timeout?: number;
 
     readonly responseType?: ResponseType;
-    readonly pattern?: Pattern;
 }
 
-export interface IResponseConfig<Data extends any = any> {
+export interface IResponseConfig<Data extends any = any> extends IInjectConfig {
 
     readonly data: Data;
     readonly status: number;
     readonly statusText: string;
 
     readonly headers: Record<string, string>;
-    readonly pattern?: Pattern;
 }
 
 export type RequestDriver = <Body extends any = any, Data extends any = any>(request: IRequestConfig<Body>) => Promise<IResponseConfig<Data>>;

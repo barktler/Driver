@@ -16,5 +16,5 @@ export const mockDriver: RequestDriver = async  <Body extends any = any, Data ex
         return generator.generate();
     }
 
-    throw new Error('[Barktler] Request pattern not declared');
+    throw new Error('[Barktler] Response data pattern not declared');
 };
