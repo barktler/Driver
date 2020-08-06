@@ -10,11 +10,11 @@ import { IRequestConfig, IResponseConfig, RequestDriver } from "./declare";
 // eslint-disable-next-line @typescript-eslint/require-await
 export const mockDriver: RequestDriver = async  <Body extends any = any, Data extends any = any>(request: IRequestConfig<Body>): Promise<IResponseConfig<Data>> => {
 
-    if (request.pattern) {
+    if (!request.responseBodyPattern) {
 
-        const generator: Generator = Generator.create(request.pattern);
-        return generator.generate();
+        throw new Error('[Barktler] Response data pattern not declared');
     }
 
-    throw new Error('[Barktler] Response data pattern not declared');
+    const generator: Generator = Generator.create(request.responseBodyPattern);
+    return generator.generate();
 };
