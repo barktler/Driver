@@ -16,5 +16,14 @@ export const mockDriver: RequestDriver = async  <Body extends any = any, Data ex
     }
 
     const generator: Generator = Generator.create(request.responseDataPattern);
-    return generator.generate();
+    const data: Data = generator.generate();
+
+    return {
+
+        data,
+        status: 200,
+        statusText: 'OK',
+
+        headers: {},
+    };
 };
