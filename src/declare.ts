@@ -28,7 +28,7 @@ export type ResponseType =
 export interface IInjectConfig {
 
     readonly requestBodyPattern?: Pattern;
-    readonly responseBodyPattern?: Pattern;
+    readonly responseDataPattern?: Pattern;
 }
 
 export interface IRequestConfig<Body extends any = any> extends IInjectConfig {
