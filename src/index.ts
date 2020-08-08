@@ -5,5 +5,4 @@
  */
 
 export * from "./declare";
-export * from "./mock";
 
