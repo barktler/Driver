@@ -39,7 +39,7 @@ describe('Given {PendingRequest} Class', (): void => {
         expect(aborted).to.be.false;
     });
 
-    it('should be able to return response', async (): Promise<void> => {
+    it('should be able to abort response', async (): Promise<void> => {
 
         const data: string = chance.string();
 
