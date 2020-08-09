@@ -53,5 +53,3 @@ export interface IResponseConfig<Data extends any = any> extends IInjectConfig {
 
     readonly headers: Record<string, string>;
 }
-
-export type RequestDriver = <Body extends any = any, Data extends any = any>(request: IRequestConfig<Body>) => Promise<IResponseConfig<Data>>;
