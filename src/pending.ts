@@ -14,7 +14,9 @@ export type PendingRequestCreateOption<Body extends any = any, Data extends any 
 
 export class PendingRequest<Body extends any = any, Data extends any = any> {
 
-    public static create<Body extends any = any, Data extends any = any>(option: PendingRequestCreateOption<Body, Data>): PendingRequest<Body, Data> {
+    public static create<Body extends any = any, Data extends any = any>(
+        option: PendingRequestCreateOption<Body, Data>,
+    ): PendingRequest<Body, Data> {
 
         return new PendingRequest(option);
     }
@@ -22,9 +24,11 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     private readonly _response: Promise<IResponseConfig<Data>>;
     private readonly _abort: () => void;
 
-    private constructor(option: PendingRequestCreateOption<Body, Data>) {
+    private constructor(
+        option: PendingRequestCreateOption<Body, Data>,
+    ) {
 
-        this._response = option.response;
+        this._response = new Promise<IResponseConfig<Data>>((resolve: ())) option.response;
         this._abort = option.abort;
     }
 
