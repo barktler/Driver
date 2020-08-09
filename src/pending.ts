@@ -21,15 +21,35 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
         return new PendingRequest(option);
     }
 
+    private _pending: boolean;
+
     private readonly _response: Promise<IResponseConfig<Data>>;
     private readonly _abort: () => void;
+
+    private _abortResponse?: () => void;
 
     private constructor(
         option: PendingRequestCreateOption<Body, Data>,
     ) {
 
-        this._response = new Promise<IResponseConfig<Data>>((resolve: ())) option.response;
+        this._pending = true;
+
         this._abort = option.abort;
+        this._response = new Promise<IResponseConfig<Data>>((
+            resolve: (data: IResponseConfig<Data>) => void,
+            reject: (reason: any) => void,
+        ) => {
+
+            this._abortResponse = () => {
+
+                reject(new Error('[Barktler] Aborted'));
+            };
+            option.response.then((value: IResponseConfig<Data>) => {
+
+                this._pending = false;
+                resolve(value);
+            });
+        });
     }
 
     public get response(): Promise<IResponseConfig<Data>> {
@@ -39,5 +59,6 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     public abort(): void {
 
         this._abort();
+        this._abortResponse();
     }
 }
