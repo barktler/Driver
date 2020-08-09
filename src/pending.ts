@@ -52,6 +52,12 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
         });
     }
 
+    public get pending(): boolean {
+        return this._pending;
+    }
+    public get completed(): boolean {
+        return !this._pending;
+    }
     public get response(): Promise<IResponseConfig<Data>> {
         return this._response;
     }
