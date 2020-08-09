@@ -38,4 +38,58 @@ describe('Given {PendingRequest} Class', (): void => {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(aborted).to.be.false;
     });
+
+    it('should be able to return response', async (): Promise<void> => {
+
+        const data: string = chance.string();
+
+        let aborted: boolean = false;
+
+        const pending: PendingRequest<string, string> = PendingRequest.create({
+
+            // eslint-disable-next-line @typescript-eslint/require-await
+            response: (async () => {
+                return createMockResponseConfig(data, chance);
+            })(),
+            abort: () => {
+                aborted = true;
+            },
+        });
+
+        const response: IResponseConfig<string> = await pending.response;
+
+        expect(response.data).to.be.equal(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(aborted).to.be.false;
+    });
+
+    it('should be able to double return response', async (): Promise<void> => {
+
+        const data: string = chance.string();
+
+        let aborted: boolean = false;
+
+        const pending: PendingRequest<string, string> = PendingRequest.create({
+
+            // eslint-disable-next-line @typescript-eslint/require-await
+            response: (async () => {
+                return createMockResponseConfig(data, chance);
+            })(),
+            abort: () => {
+                aborted = true;
+            },
+        });
+
+        const response: IResponseConfig<string> = await pending.response;
+
+        expect(response.data).to.be.equal(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(aborted).to.be.false;
+
+        const response2: IResponseConfig<string> = await pending.response;
+
+        expect(response2.data).to.be.equal(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(aborted).to.be.false;
+    });
 });
