@@ -5,4 +5,6 @@
  */
 
 export * from "./declare";
+export * from "./driver";
+export * from "./pending";
 
