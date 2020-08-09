@@ -67,6 +67,8 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     public abort(): void {
 
         this._abort();
-        this._abortResponse();
+        if (this._abortResponse) {
+            this._abortResponse();
+        }
     }
 }
