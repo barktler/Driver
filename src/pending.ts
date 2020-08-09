@@ -42,7 +42,9 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
 
             this._abortResponse = () => {
 
-                reject(new Error('[Barktler] Aborted'));
+                if (this._pending) {
+                    reject(new Error('[Barktler] Aborted'));
+                }
             };
             option.response.then((value: IResponseConfig<Data>) => {
 
