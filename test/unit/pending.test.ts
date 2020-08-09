@@ -7,6 +7,7 @@
 
 import { expect } from "chai";
 import * as Chance from "chance";
+import { IResponseConfig } from "../../src/declare";
 import { PendingRequest } from "../../src/pending";
 import { createMockResponseConfig } from "../mock/mock";
 
@@ -31,7 +32,10 @@ describe('Given {PendingRequest} Class', (): void => {
             },
         });
 
-        const response = await pending.response;
-        console.log(response, aborted);
+        const response: IResponseConfig<string> = await pending.response;
+
+        expect(response.data).to.be.equal(data);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(aborted).to.be.false;
     });
 });
