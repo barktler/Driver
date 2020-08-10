@@ -40,6 +40,34 @@ describe('Given {PendingRequest} Class', (): void => {
         expect(aborted).to.be.false;
     });
 
+    it('should be able to fail response', async (): Promise<void> => {
+
+        let aborted: boolean = false;
+
+        const pending: PendingRequest<string, string> = PendingRequest.create({
+
+            // eslint-disable-next-line @typescript-eslint/require-await
+            response: (async () => {
+                throw new Error("Failed");
+            })(),
+            abort: () => {
+                aborted = true;
+            },
+        });
+
+        let error: any;
+
+        try {
+            await pending.response;
+        } catch (reason) {
+            error = reason;
+        } finally {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            expect(aborted).to.be.false;
+            expect(error.message).to.be.equal("Failed");
+        }
+    });
+
     it('should be able to abort response', async (): Promise<void> => {
 
         const data: string = chance.string();
@@ -50,8 +78,7 @@ describe('Given {PendingRequest} Class', (): void => {
 
             // eslint-disable-next-line @typescript-eslint/require-await
             response: (async () => {
-                // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-                await Sleep.for(30)
+                await Sleep.for(10)
                 return createMockResponseConfig(data, chance);
             })(),
             abort: () => {
@@ -61,20 +88,17 @@ describe('Given {PendingRequest} Class', (): void => {
 
         setTimeout(() => {
             pending.abort();
-            // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-        }, 10);
+        }, 5);
 
         let error: any;
 
         try {
-            const response: IResponseConfig<string> = await pending.response;
-            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            expect(response).to.be.undefined;
-            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            expect(aborted).to.be.true;
+            await pending.response;
         } catch (reason) {
             error = reason;
         } finally {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            expect(aborted).to.be.true;
             expect(error.message).to.be.equal("[Barktler] Aborted");
         }
     });

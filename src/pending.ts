@@ -50,6 +50,10 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
 
                 this._pending = false;
                 resolve(value);
+            }).catch((reason: any) => {
+
+                this._pending = false;
+                reject(reason);
             });
         });
     }
