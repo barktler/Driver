@@ -22,6 +22,7 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     }
 
     private _pending: boolean;
+    private _succeed: boolean;
 
     private readonly _response: Promise<IResponseConfig<Data>>;
     private readonly _abort: () => void;
@@ -33,6 +34,7 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     ) {
 
         this._pending = true;
+        this._succeed = false;
 
         this._abort = option.abort;
         this._response = new Promise<IResponseConfig<Data>>((
@@ -49,6 +51,7 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
             option.response.then((value: IResponseConfig<Data>) => {
 
                 this._pending = false;
+                this._succeed = true;
                 resolve(value);
             }).catch((reason: any) => {
 
@@ -63,6 +66,12 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     }
     public get completed(): boolean {
         return !this._pending;
+    }
+    public get succeed(): boolean {
+        return this._succeed;
+    }
+    public get failed(): boolean {
+        return !this._succeed;
     }
     public get response(): Promise<IResponseConfig<Data>> {
         return this._response;

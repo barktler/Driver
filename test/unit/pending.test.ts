@@ -37,6 +37,8 @@ describe('Given {PendingRequest} Class', (): void => {
 
         expect(response.data).to.be.equal(data);
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        expect(pending.succeed).to.be.true;
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         expect(aborted).to.be.false;
     });
 
@@ -64,6 +66,8 @@ describe('Given {PendingRequest} Class', (): void => {
         } finally {
             // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             expect(aborted).to.be.false;
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            expect(pending.failed).to.be.true;
             expect(error.message).to.be.equal("Failed");
         }
     });
