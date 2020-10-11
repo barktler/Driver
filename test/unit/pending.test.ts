@@ -82,7 +82,7 @@ describe('Given {PendingRequest} Class', (): void => {
 
             // eslint-disable-next-line @typescript-eslint/require-await
             response: (async () => {
-                await Sleep.for(10)
+                await Sleep.for(10);
                 return createMockResponseConfig(data, chance);
             })(),
             abort: () => {
