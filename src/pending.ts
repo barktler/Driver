@@ -6,6 +6,7 @@
 
 import { IResponseConfig } from "./declare";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type PendingRequestCreateOption<Body extends any = any, Data extends any = any> = {
 
     readonly response: Promise<IResponseConfig<Data>>;
@@ -14,6 +15,7 @@ export type PendingRequestCreateOption<Body extends any = any, Data extends any 
 
 export class PendingRequest<Body extends any = any, Data extends any = any> {
 
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     public static create<Body extends any = any, Data extends any = any>(
         option: PendingRequestCreateOption<Body, Data>,
     ): PendingRequest<Body, Data> {
