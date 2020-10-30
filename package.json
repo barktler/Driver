@@ -16,12 +16,12 @@
   },
   "homepage": "https://github.com/barktler/Driver#readme",
   "dependencies": {
-    "@sudoo/pattern": "^1.4.0"
+    "@sudoo/pattern": "^1.6.1"
   },
   "devDependencies": {
     "@sudoo/asynchronous": "^2.3.1",
     "@sudoo/io": "^1.8.0",
-    "@sudoo/triforce": "^2.9.4"
+    "@sudoo/triforce": "^2.9.6"
   },
   "nyc": {
     "extension": [
