@@ -15,8 +15,8 @@
     "url": "https://github.com/barktler/Driver/issues"
   },
   "homepage": "https://github.com/barktler/Driver#readme",
-  "dependencies": {
-    "@sudoo/pattern": "^1.6.1"
+  "peerDependencies": {
+    "@sudoo/pattern": "*"
   },
   "devDependencies": {
     "@sudoo/asynchronous": "^2.3.1",
