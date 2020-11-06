@@ -27,7 +27,11 @@ export type ResponseType =
 
 export interface IInjectConfig {
 
+    readonly requestParamsPattern?: Pattern;
+    readonly requestHeaderPattern?: Pattern;
     readonly requestBodyPattern?: Pattern;
+
+    readonly responseHeaderPattern?: Pattern;
     readonly responseDataPattern?: Pattern;
 }
 
