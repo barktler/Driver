@@ -33,8 +33,6 @@ export interface IInjectConfig {
 
     readonly responseHeadersPattern?: Pattern;
     readonly responseDataPattern?: Pattern;
-
-    readonly errorPayloadPattern?: Pattern;
 }
 
 export interface IRequestConfig<Body extends any = any> extends IInjectConfig {
@@ -58,9 +56,4 @@ export interface IResponseConfig<Data extends any = any> extends IInjectConfig {
     readonly statusText: string;
 
     readonly headers: Record<string, string>;
-}
-
-export interface IErrorConfig<Payload extends any = any> extends IInjectConfig {
-
-    readonly payload: Payload;
 }
