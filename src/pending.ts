@@ -29,6 +29,8 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
     private readonly _response: Promise<IResponseConfig<Data>>;
     private readonly _abort: () => void;
 
+    private _onError: ((reason: any) => void) | null;
+
     private _abortResponse?: () => void;
 
     private constructor(
@@ -39,6 +41,8 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
         this._succeed = false;
 
         this._abort = option.abort;
+        this._onError = null;
+
         this._response = new Promise<IResponseConfig<Data>>((
             resolve: (data: IResponseConfig<Data>) => void,
             reject: (reason: any) => void,
