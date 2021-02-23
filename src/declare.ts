@@ -51,6 +51,8 @@ export interface IRequestConfig<Body extends any = any> extends IInjectConfig {
 
 export interface IResponseConfig<Data extends any = any> extends IInjectConfig {
 
+    readonly succeed: boolean;
+
     readonly data: Data;
     readonly status: number;
     readonly statusText: string;

@@ -53,13 +53,19 @@ export class PendingRequest<Body extends any = any, Data extends any = any> {
             };
             option.response.then((value: IResponseConfig<Data>) => {
 
+                if (value.succeed) {
+                    this._succeed = true;
+                } else {
+                    this._succeed = false;
+                }
+
                 this._pending = false;
-                this._succeed = true;
 
                 resolve(value);
             }).catch((reason: any) => {
 
                 this._pending = false;
+                this._succeed = false;
 
                 reject(reason);
             });

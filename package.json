@@ -1,6 +1,6 @@
 {
   "name": "@barktler/driver",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": ":seedling: Driver declaration",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "@sudoo/asynchronous": "^2.3.1",
     "@sudoo/io": "^1.8.0",
     "@sudoo/pattern": "^1.6.1",
-    "@sudoo/triforce": "^2.9.10"
+    "@sudoo/triforce": "^2.9.16"
   },
   "nyc": {
     "extension": [
